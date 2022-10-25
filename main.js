@@ -4,29 +4,44 @@ const menuMobile = document.querySelector('.mobile-menu');
 const menuHamburguer = document.querySelector('.menu');
 const shoppingCartt = document.querySelector('.navbar-shopping-cart');
 const asaide = document.querySelector('.product-detail');
-const ordersecundary = document.querySelector('.my-order');
-const bottomprimary = document.querySelector('.primary-button');
 
 
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 menuHamburguer.addEventListener('click', toggleMenuHamburguer);
 shoppingCartt.addEventListener('click', toggleshopping);
-bottomprimary.addEventListener('click', toggleordersecundary);
 
-
+//funciones para que cierre uno cuando abre otro menu
 function toggleDesktopMenu() {
+    const isAsaideClosed = asaide.classList.contains('inactive');
+    
+    if(!isAsaideClosed) {
+        asaide.classList.add('inactive');
+    }
     desktopMenu.classList.toggle('inactive');
 }
 
 function toggleMenuHamburguer() {
+    const isAsaideClosed = asaide.classList.contains('inactive');
+
+    if(!isAsaideClosed) {
+        asaide.classList.add('inactive');
+    };
+
     menuMobile.classList.toggle('inactive');
 }
 
 function toggleshopping() {
- asaide.classList.toggle('inactive');
+    const isMobileClosed = menuMobile.classList.contains('inactive');
+    const isDesktopClosed = desktopMenu.classList.contains('inactive');
+
+    if (!isMobileClosed) {
+        menuMobile.classList.add('inactive');
+    }
+        if(!isDesktopClosed){
+        desktopMenu.classList.add('inactive')
+    };
+
+    asaide.classList.toggle('inactive');
 }
 
-function toggleordersecundary() {
-    ordersecundary.classList.toggle('inactive');
-}
