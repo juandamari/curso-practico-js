@@ -1,9 +1,11 @@
 const menuEmail =  document.querySelector('.navbar-email');
 const desktopMenu = document.querySelector('.desktop-menu');
 const menuMobile = document.querySelector('.mobile-menu');
+const productDetailCloseIcon = document.querySelector('.product-detail-close');
 const menuHamburguer = document.querySelector('.menu');
 const shoppingCartt = document.querySelector('.navbar-shopping-cart');
-const asaide = document.querySelector('.product-detail');
+const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
+const productDetailContainer = document.querySelector('#productDetail');
 const cardsContainer = document.querySelector('.cards-container');
 
 
@@ -11,22 +13,23 @@ const cardsContainer = document.querySelector('.cards-container');
 menuEmail.addEventListener('click', toggleDesktopMenu);
 menuHamburguer.addEventListener('click', toggleMenuHamburguer);
 shoppingCartt.addEventListener('click', toggleshopping);
+productDetailCloseIcon.addEventListener('click', closeProductDetailAside);
 
 //funciones para que cierre uno cuando abre otro menu
 function toggleDesktopMenu() {
-    const isAsaideClosed = asaide.classList.contains('inactive');
+    const isAsaideClosed = shoppingCartContainer.classList.contains('inactive');
     
     if(!isAsaideClosed) {
-        asaide.classList.add('inactive');
+        shoppingCartContainer.classList.add('inactive');
     }
     desktopMenu.classList.toggle('inactive');
 }
 
 function toggleMenuHamburguer() {
-    const isAsaideClosed = asaide.classList.contains('inactive');
+    const isAsaideClosed = shoppingCartContainer.classList.contains('inactive');
 
     if(!isAsaideClosed) {
-        asaide.classList.add('inactive');
+        shoppingCartContainer.classList.add('inactive');
     };
 
     menuMobile.classList.toggle('inactive');
@@ -38,12 +41,19 @@ function toggleshopping() {
 
     if (!isMobileClosed) {
         menuMobile.classList.add('inactive');
-    }
-        if(!isDesktopClosed){
-        desktopMenu.classList.add('inactive')
+    };
+    if(!isDesktopClosed){
+        desktopMenu.classList.add('inactive');
     };
 
-    asaide.classList.toggle('inactive');
+    shoppingCartContainer.classList.toggle('inactive');
+}
+function openProductDetailAside(){
+    productDetailContainer.classList.remove('inactive');
+    console.log(openProductDetailAside)
+}
+function closeProductDetailAside(){
+    productDetailContainer.classList.add('inactive');
 }
 
 /* manejando el DOM para agregar tarjetas de productos */
@@ -57,24 +67,24 @@ productList.push({
 productList.push ({
     name:'Bicycle helmet',
     price: 1200,
-    image: 'https://assets.specialized.com/i/specialized/60821-104_HLMT_ALIGN-II-HLMT-MIPS-CE-BLK-BLKREFL-S-M_HERO?bg=rgb(241,241,241)&w=1600&h=900&fmt=auto'
+    image: 'https://m.media-amazon.com/images/I/61e+sZ9rgNL._AC_SL1500_.jpg'
 });
 productList.push ({
     name:'Bicycle helmet',
     price: 1600,
-    image: 'https://m.media-amazon.com/images/I/61eExL-rIAL._AC_SL1001_.jpg'
+    image: 'https://m.media-amazon.com/images/I/61e+sZ9rgNL._AC_SL1500_.jpg'
 });
 productList.push ({
     name:'Bicycle helmet',
     price: 1500,
-    image: 'https://assets.specialized.com/i/specialized/60822-140_HLMT_CHAMONIX-HLMT-MIPS-CE-MRN-M-L_HERO?bg=rgb(241,241,241)&w=1600&h=900&fmt=auto'
+    image: 'https://m.media-amazon.com/images/I/61e+sZ9rgNL._AC_SL1500_.jpg'
 });
 productList.push ({
     name:'Seat',
     price: 300,
     image: 'https://m.media-amazon.com/images/I/61e+sZ9rgNL._AC_SL1500_.jpg'
 });
-
+//ciclo for donde creo los elementos de product y manejo el DOM, llenando la pantalla con una lista mas facil de entender
 function renderProducts(arr) {
     for (product of arr){
         const productCard = document.createElement('div');
@@ -84,6 +94,7 @@ function renderProducts(arr) {
         
             const productImg = document.createElement('img');
             productImg.setAttribute('src', product.image);
+            productImg.addEventListener('click', openProductDetailAside);
         
             const productInfo = document.createElement('div');
             productInfo.classList.add('product-info');

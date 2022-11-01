@@ -20,6 +20,17 @@
     padding: 0 24px;
     border-bottom: 1px solid var(--very-light-pink);
   }
+  aside {
+    width: 360px;
+    transition: 1s;
+ 
+    top: 61px;
+    background-color: var(--white);
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+
+  }
 
   /* desktop menu  */
 
@@ -81,13 +92,13 @@
     align-items: center;
   }
 
- /* sub menu derecha */
+ /* sub menu right */
 
  .inactive{
     /* display: none; Puedo cambiar el opacity y transition para tener normal la interaccion */
     opacity: 0;
 }
-.desktop-menu {
+  .desktop-menu {
   width: 100px;
   transition: 1s;
   position: absolute;
@@ -99,40 +110,42 @@
   border-radius: 6px;
   padding: 20px 20px 0 20px;
 }
-.desktop-menu ul {
+  .desktop-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.desktop-menu ul li {
+  .desktop-menu ul li {
   text-align: end;
 }
-.desktop-menu ul li:nth-child(1),
-.desktop-menu ul li:nth-child(2) {
+  .desktop-menu ul li:nth-child(1),
+  .desktop-menu ul li:nth-child(2) {
   font-weight: bold;
 }
-.desktop-menu ul li:last-child {
+  .desktop-menu ul li:last-child {
   padding-top: 20px;
   border-top: 1px solid var(--very-light-pink);
 }
-.desktop-menu ul li:last-child a {
+  .desktop-menu ul li:last-child a {
   color: var(--hospital-green);
   font-size: var(--sm);
 }
-.desktop-menu ul li a {
+  .desktop-menu ul li a {
   color: var(--back);
   text-decoration: none;
   margin-bottom: 20px;
   display: inline-block;
 }
 /* sub menu mobile left */
-.mobile-menu {
+  .mobile-menu {
     position: absolute;
     background-color: var(--white);
     transition: 1s;
     top: 61px;
     left: 0;
-    padding: 24px;
+    width: calc(100% - 24px); /* evitando un scroll horizontal y al tiempo darle el 100% de pantalla */
+    padding-left: 24px;
+
   }
   .mobile-menu a {
     text-decoration: none;
@@ -161,18 +174,9 @@
   }
 
 /* shppping cart  */
-
-.product-detail {
-    width: 360px;
-    transition: 1s;
-    padding: 0 24px;
-    top: 61px;
-    background-color: var(--white);
-    box-sizing: border-box;
-    position: absolute;
-    right: 0;
-
-  }
+  #shoppingCartContainer{
+  padding: 0 24px;
+}
   .title-container {
     display: flex;
   }
@@ -240,9 +244,67 @@
     font-weight: bold;
     height: 50px;
   }
+  /* sub cart product detail */
+  .product-detail-close {
+    background: var(--white);
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 2;
+    padding: 12px;
+    border-radius: 50%;
+  }
+  .product-detail-close:hover {
+    cursor: pointer;
+  }
+  #productDetail > img:nth-child(2) {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 0 0 20px 20px;
+  }
+  #productDetail .product-info {
+    margin: 24px 24px 0 24px;
+  }
+  #productDetail .product-info p:nth-child(1) {
+    font-weight: bold;
+    font-size: var(--md);
+    margin-top: 0;
+    margin-bottom: 4px;
+  }
+  #productDetail .product-info p:nth-child(2) {
+    color: var(--very-light-pink);
+    font-size: var(--md);
+    margin-top: 0;
+    margin-bottom: 36px;
+  }
+  #productDetail .product-info p:nth-child(3) {
+    color: var(--very-light-pink);
+    font-size: var(--sm);
+    margin-top: 0;
+    margin-bottom: 36px;
+  }
+  .primary-button {
+    background-color: var(--hospital-green);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 100%;
+    cursor: pointer;
+    font-size: var(--md);
+    font-weight: bold;
+    height: 50px;
+  }
+  .add-to-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
 /* cart checkout */
-.my-order {
+  .my-order {
     width: 40%;
     height: 80vh;
     display: grid;
@@ -318,42 +380,43 @@
 
 /* tarjetas de presentacion de producto */
 
-.cards-container {
+  .cards-container {
   display: grid;
+  cursor: pointer;
   grid-template-columns: repeat(auto-fill, 240px);
   gap: 40px;
   place-content: center;
   margin-top: 30px;
 }
-.product-card {
+  .product-card {
   width: 240px;
 }
-.product-card img {
-  width: 250px;
+  .product-card img {
+  width: 240px;
   height: 240px;
   border-radius: 20px;
   object-fit: cover;
 }
-.product-info {
+  .product-card .product-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 12px;
 }
-.product-info figure {
+  .product-card .product-info figure {
   margin: 0;
 }
-.product-info figure img {
+  .product-card .product-info figure img {
   width: 35px;
   height: 35px;
 }
-.product-info div p:nth-child(1) {
+  .product-card .product-info div p:nth-child(1) {
   font-weight: bold;
   font-size: var(--md);
   margin-top: 0;
   margin-bottom: 4px;
 }
-.product-info div p:nth-child(2) {
+  .product-card .product-info div p:nth-child(2) {
   font-size: var(--sm);
   margin-top: 0;
   margin-bottom: 0;
