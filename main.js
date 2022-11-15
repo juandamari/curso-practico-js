@@ -50,7 +50,6 @@ function toggleshopping() {
 }
 function openProductDetailAside(){
     productDetailContainer.classList.remove('inactive');
-    console.log(openProductDetailAside)
 }
 function closeProductDetailAside(){
     productDetailContainer.classList.add('inactive');
